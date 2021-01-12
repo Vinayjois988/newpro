@@ -23,7 +23,7 @@ node {
     sh """echo hi """
   }
   stage ('Echo my mobile number'){
-    common.mobile()
+    common.mobile(vmname)
   }
   //stage ('Creating VMs for redis'){
    //common.vm_creation(imageid,vmcount,vmtype,keyname,securitygroupid,subnetid) 
