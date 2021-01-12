@@ -22,9 +22,9 @@ def vm_creation (def imageid,def vmcount,def vmtype,def keyname,def securitygrou
 """
 }
 def create_name (def instanceid,def vmname){
-  sh '''
+  sh """
       echo ${vmname}
-      '''
+      """
     /* sudo aws ec2 describe-instances --output json | grep "InstanceId" | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
      
  
