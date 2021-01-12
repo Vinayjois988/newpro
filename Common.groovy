@@ -9,9 +9,10 @@ import java.io.Reader;
 import java.util.HashMap;
 
 
-def mobile (){
+def mobile (def vmname){
  sh """
  	echo "9972"
+  echo "${vmname}"
     """
 }
 
