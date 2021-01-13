@@ -25,11 +25,11 @@ def create_name (def vmname){
   sh '''#!/bin/bash
         sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
         
-       while IFS="" read -r p || [ -n "$p" ]
-       do
-      printf "$p"
-      sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value=${vmname}
-      done < name.txt
+       while read p; do
+       sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value=${vmname}
+      done <name.txt
+      
+      
       >name.txt
       #myvar=sachin
        #echo \$myvar
