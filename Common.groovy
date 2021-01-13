@@ -24,12 +24,17 @@ def vm_creation (def imageid,def vmcount,def vmtype,def keyname,def securitygrou
 def create_name (def vmname){
   sh '''
         sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
-       vmname="Redis" 
+       vmname="redis" 
        while read p; do
        echo "$p"
        i=1
-       sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname"+"$i"
+       sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".m.vm"$i"
        i=$((i+1))
+       if $i>"3"; then 
+       i=4
+       sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".s.vm"$i"
+       else 
+       echo
        done <name.txt
       
       
