@@ -48,6 +48,16 @@ def create_name (def vmname){
         >name.txt
       
     '''
+ def ssh (){
+  sh '''
+       sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
+       while read p ; do
+       Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
+       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@"$Ip"
+       sudo scp -i "/tmp/Jenkins.pem" /tmp/remotescript.sh "$user"@"$Ip":/tmp
+       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@"$Ip" 'bash -s' < /tmp/remotescript.sh
+       done < name.txt
+    '''
  }
  
 return this 
