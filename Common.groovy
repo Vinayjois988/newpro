@@ -28,10 +28,10 @@ def create_name (def vmname){
        i=1
        while read p ; do
         if [ "$i" -gt "3" ]; then
-                echo ""$vmname".s."$i""
+                sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".s.vm"$i"
                 i=$((i+1))
         else
-                echo ""$vmname".m."$i""
+                sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".m.vm"$i"
                 i=$((i+1))
         fi
         done < name.txt
