@@ -29,7 +29,7 @@ node {
    //common.vm_creation(imageid,vmcount,vmtype,keyname,securitygroupid,subnetid) 
   //}
   stage ('adding name for created vms'){
-    common.create_name(instanceid,vmname)
+    common.create_name(vmname)
   }
   }
 
