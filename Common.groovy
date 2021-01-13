@@ -44,7 +44,6 @@ def create_name (def vmname){
                 fi
                 
         fi
-        fi
         done < name.txt
         >name.txt
       
