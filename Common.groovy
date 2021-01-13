@@ -30,7 +30,7 @@ def create_name (def vmname){
        do
       printf '%s\n' "$p"
       done < name.txt
-       # echo "$instanceid"
+        echo "$p"
        # echo "sudo aws ec2 create-tags --resources \$instanceid --tags Key=Name,Value=\$vmname"
         
        #myvar=sachin
