@@ -61,9 +61,9 @@ def create_name (def vmname){
        echo "Terminated VM Present"
        else
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
-       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@"$Ip"
-       sudo scp -i "/tmp/Jenkins.pem" /tmp/remotescript.sh "$user"@"$Ip":/tmp
-       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@"$Ip" 'bash -s' < /tmp/remotescript.sh
+       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip
+       sudo scp -i "/tmp/Jenkins.pem" /tmp/remotescript.sh "$user"@$Ip:/tmp
+       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/remotescript.sh
        fi
        done < name.txt
      '''
