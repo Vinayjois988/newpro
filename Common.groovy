@@ -28,7 +28,7 @@ def create_name (def vmname){
        while IFS="" read -r p || [ -n "$p" ]
        do
       printf "$p"
-      sudo aws ec2 create-tags --resources"$p" --tags Key=Name,Value=${vmname}
+      sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value=${vmname}
       done < name.txt
       >name.txt
       #myvar=sachin
