@@ -28,9 +28,6 @@ def create_name (def vmname){
        i=1
        jenkinsid="i-05513a9dde52fac1b"
        while read p ; do
-         
-        echo "jenkins instance id found skipping"
-        else 
         if [ "$i" -gt "3" ]; then
                 if [ "$p" == "$jenkinsid" ]; then
                 echo "jenkins id found"
