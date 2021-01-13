@@ -23,25 +23,20 @@ def vm_creation (def imageid,def vmcount,def vmtype,def keyname,def securitygrou
 }
 def create_name (def vmname){
   sh '''
-        sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
-       vmname="redis" 
-       while read p; do
-       echo "$p"
+       sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
+       vmname="redis"
        i=1
-       sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".m.vm"$i"
-       i=$((i+1))
-       if $i>"3"; then 
-       i=4
-       sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".s.vm"$i"
-       else 
-       echo "nothing"
-       fi
-       done <name.txt
+       while read p ; do
+        if [ "$i" -gt "3" ]; then
+                echo ""$vmname".s."$i""
+                i=$((i+1))
+        else
+                echo ""$vmname".m."$i""
+                i=$((i+1))
+        fi
+        done < name.txt
+        >name.txt
       
-      
-      >name.txt
-      #myvar=sachin
-       #echo \$myvar
     '''
  }
  
