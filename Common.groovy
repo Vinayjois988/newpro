@@ -53,6 +53,7 @@ def create_name (def vmname){
   sh '''
        sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
        jenkinsid="i-05513a9dde52fac1b"
+       user="ec2-user"
        while read p ; do
        if [ "$p" == "$jenkinsid" ]; then
        echo "jenkins id found"
