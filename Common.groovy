@@ -28,7 +28,7 @@ def create_name (def instanceid,def vmname){
       
         for a in instanceid=$(cat name.txt); do
         echo "$instanceid"
-        #sudo aws ec2 create-tags --resources \$instanceid --tags Key=Name,Value=\$vmname
+        echo "sudo aws ec2 create-tags --resources \$instanceid --tags Key=Name,Value=\$vmname"
         done
     '''
  }
