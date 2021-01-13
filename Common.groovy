@@ -56,7 +56,7 @@ def create_name (def vmname){
        while read p ; do
        if [ "$p" == "$jenkinsid" ]; then
        echo "jenkins id found"
-       elseif [ "$p" == "i-0ea305196a6197060" ]; then
+       elif [ "$p" == "i-0ea305196a6197060" ]; then
        echo "Terminated VM Present"
        else
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
