@@ -25,7 +25,7 @@ def create_name (def vmname){
   sh '''#!/bin/bash -xe
         >name.txt
         sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
-      
+        
        while IFS="" read -r p || [ -n "$p" ]
        do
       printf '%s\n' "$p"
