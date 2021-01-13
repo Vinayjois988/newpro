@@ -34,7 +34,7 @@ def create_name (def vmname){
        i=4
        sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".s.vm"$i"
        else 
-       echo
+       echo "nothing"
        fi
        done <name.txt
       
