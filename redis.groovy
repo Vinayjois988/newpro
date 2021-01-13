@@ -31,6 +31,9 @@ node {
   stage ('adding name for created vms'){
     common.create_name(vmname)
   }
+  stage ('Logining into vms')
+    common.ssh()
+}
   }
 
   
