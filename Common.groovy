@@ -26,13 +26,29 @@ def create_name (def vmname){
        sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
        vmname="redis"
        i=1
+       jenkinsid="i-05513a9dde52fac1b"
        while read p ; do
+         
+        echo "jenkins instance id found skipping"
+        else 
         if [ "$i" -gt "3" ]; then
+                if [ "$p" == "$jenkinsid" ]; then
+                echo "jenkins id found"
+                else 
                 sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".s.vm"$i"
                 i=$((i+1))
+                fi
+                
+                
         else
+                if [ "$p" == "$jenkinsid" ]; then
+                echo "jenkins id found"
+                else
                 sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".m.vm"$i"
                 i=$((i+1))
+                fi
+                
+        fi
         fi
         done < name.txt
         >name.txt
