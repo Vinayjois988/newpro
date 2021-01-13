@@ -48,6 +48,7 @@ def create_name (def vmname){
         >name.txt
       
     '''
+}
  def ssh (){
   sh '''
        sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
