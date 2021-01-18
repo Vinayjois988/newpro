@@ -113,5 +113,23 @@ def cluster(){
        >/tmp/cluster.sh
       '''
 }
+def get_cluster(){
+ sh '''
+   sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
+   sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
+       user="ec2-user"
+       while read p; do
+       if [ "$p" == "$jenkinsid" ]; then
+       echo "Jenkins id found"
+       elif [ "$p" == "$okd" ]; then
+       echo "okd found"
+       else
+       Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
+       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /home/ec2-user/redis-6.0.9/src/redis-cli -c -h `hostname -i` -a Af1AMNF5Tl1 cluster nodes
+       break
+       fi
+       done < name.txt
+ '''
+}
     
 return this 
