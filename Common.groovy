@@ -32,13 +32,13 @@ def create_name (def vmname){
         if [ "$i" -gt "3" ]; then
                 if [ "$p" == "$jenkinsid" ]; then
                 echo "jenkins id found"
-                elsif [ "$p" =="$okd" ]; then
+                elif [ "$p" =="$okd" ]; then
                 echo "okd found"
                 else
                 sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".s.vm"$i"
                 i=$((i+1))
                 fi
-        else
+                else
                 if [ "$p" == "$jenkinsid" ]; then
                 echo "jenkins id found"
                 else
