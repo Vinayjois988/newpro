@@ -126,10 +126,15 @@ def get_cluster(){
        elif [ "$p" == "$okd" ]; then
        echo "okd found"
        else
+       echo "sudo su
+           cd /home/ec2-user/redis-6.0.9
+           " >> /tmp/cluster.sh
+       printf "src/redis-cli -c -h `hostname -i` -a -a Af1AMNF5Tl1 cluster nodes" >> /tmp/cluster.sh
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
-       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < sudo /home/ec2-user/redis-6.0.9/src/redis-cli -c -h `hostname -i` -a Af1AMNF5Tl1 cluster nodes
+       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/cluster.sh
        fi
        done < name.txt
+       >/tmp/cluster.sh
  '''
 }
     
