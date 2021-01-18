@@ -132,6 +132,8 @@ def get_cluster(){
            " >> /tmp/cluster.sh
        echo 'src/redis-cli -c -h "`hostname -i`" -a Af1AMNF5Tl1 info' >> /tmp/cluster.sh
        echo 'src/redis-cli -c -h "`hostname -i`" -a Af1AMNF5Tl1 cluster nodes' >> /tmp/cluster.sh
+       echo 'src/redis-cli -c -h "`hostname -i`" -a Af1AMNF5Tl1 redis-benchmark -q' >> /tmp/cluster.sh
+
        
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
        
