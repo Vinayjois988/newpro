@@ -7,11 +7,11 @@ node {
   def vmsize="20"
   def vmtype="t2.medium"
   def ostype="RHEL"
-  def imageid="ami-096fda3c22c1c990a"
+  def imageid="ami-0a9d27a9f4f5c0efc"
   def vmcount="6"
   def keyname="Jenkins"
-  def securitygroupid="sg-04671d091eb987414"
-  def subnetid="subnet-0bab0452812a186de"
+  def securitygroupid="sg-8ed10bec"
+  def subnetid="subnet-dc5068b4"
   def rootdir="/var/lib/jenkins"
   def instanceid
   def ip
