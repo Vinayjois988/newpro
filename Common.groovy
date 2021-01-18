@@ -106,8 +106,9 @@ def cluster(){
        else
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
        sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/cluster.sh
+       
+       break
        fi
-       break 
        done < name.txt
        >/tmp/cluster.sh
       '''
