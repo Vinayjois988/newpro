@@ -99,7 +99,7 @@ def cluster(){
       sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
        user="ec2-user"
        while read p; do
-       if [ "$p" == $jenkinsid" ]; then
+       if [ "$p" == "$jenkinsid" ]; then
        echo "Jenkins id found"
        elif [ "$p" == "$okd" ]; then
        echo "okd found"
