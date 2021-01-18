@@ -77,7 +77,7 @@ def cluster(){
       echo "sudo su
            cd /home/ec2-user/redis-6.0.9
            " >> /tmp/cluster.sh
-      printf "src/redis-cli --cluster create --cluster-replicas 1 " >> /tmp/cluster.sh
+      printf "echo "yes" | src/redis-cli --cluster create --cluster-replicas 1 " >> /tmp/cluster.sh
       while read p; do
       if [ "$p" == "$jenkinsid" ]; then
        echo "jenkins id found"
