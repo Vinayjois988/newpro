@@ -42,7 +42,7 @@ node {
    //   common.cluster()
   //}
   stage ('getig info of cluster'){
-    common.get_cluster
+    common.get_cluster()
   }
 }
   
