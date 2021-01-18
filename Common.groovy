@@ -74,7 +74,7 @@ def create_name (def vmname){
       sudo aws ec2 describe-instances --output json | grep Ip | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
       Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
       while read p; do
-      
+       if [ "$p" ==
        
       
       
