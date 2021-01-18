@@ -127,8 +127,7 @@ def get_cluster(){
        echo "okd found"
        else
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
-       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < sudo su && /home/ec2-user/redis-6.0.9/src/redis-cli -c -h `hostname -i` -a Af1AMNF5Tl1 cluster nodes
-       break
+       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < sudo /home/ec2-user/redis-6.0.9/src/redis-cli -c -h `hostname -i` -a Af1AMNF5Tl1 cluster nodes
        fi
        done < name.txt
  '''
