@@ -37,7 +37,7 @@ node {
   }
   stage ( ' Call ssh '){
     common.ssh()
-  }*/
+  }
     stage ('Redis Cluster'){
       common.cluster()
   }
