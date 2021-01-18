@@ -69,5 +69,9 @@ def create_name (def vmname){
        >name.txt
      '''
    }
- 
+ def cluster()
+ sh '''
+      sudo aws ec2 describe-instances --output json | grep  | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
+      while read p; do
+      
 return this 
