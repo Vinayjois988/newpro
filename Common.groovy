@@ -90,6 +90,7 @@ def cluster(){
       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/cluster.sh
       break 
       done < name.txt
+      >/tmp/cluster.sh
       '''
 }
     
