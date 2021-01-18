@@ -82,7 +82,7 @@ def cluster(){
       echo "sudo su
            cd /home/ec2-user/redis-6.0.9
            " >> /tmp/cluster.sh
-      printf "src/redis-cli --cluster create --cluster-replicas 1 " >> /tmp/cluster.sh
+      printf "echo "yes" | src/redis-cli --cluster create --cluster-replicas 1 " >> /tmp/cluster.sh
       while read p; do
       if [ "$p" == "$jenkinsid" ]; then
        echo "jenkins id found"
@@ -106,8 +106,8 @@ def cluster(){
        else
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
        sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/cluster.sh
-       break 
        fi
+       break 
        done < name.txt
        >/tmp/cluster.sh
       '''
