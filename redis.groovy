@@ -38,8 +38,11 @@ node {
  // stage ( ' Call ssh '){
  //   common.ssh()
 //  }
-    stage ('Redis Cluster'){
-      common.cluster()
+ //   stage ('Redis Cluster'){
+   //   common.cluster()
+  //}
+  stage ('getig info of cluster'){
+    common.get_cluster
   }
 }
   
