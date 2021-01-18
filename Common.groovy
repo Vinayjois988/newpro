@@ -77,7 +77,7 @@ def cluster(){
       echo "sudo su
            cd /home/ec2-user/redis-6.0.9
            " >> /tmp/cluster.sh
-      printf "echo "yes" | src/redis-cli --cluster create --cluster-replicas 1 " >> /tmp/cluster.sh
+      printf "src/redis-cli --cluster create --cluster-replicas 1 " >> /tmp/cluster.sh
       while read p; do
       if [ "$p" == "$jenkinsid" ]; then
        echo "jenkins id found"
@@ -88,16 +88,23 @@ def cluster(){
       printf " $Ip:6379" >> /tmp/cluster.sh
       fi
       done < name.txt
-      echo " -a Atos@123" >> /tmp/cluster.sh
+      echo " -a Af1AMNF5Tl1" >> /tmp/cluster.sh
       
+  
       sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
-      user="ec2-user"
-      while read p; do
-      Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
-      sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/cluster.sh
-      break 
-      done < name.txt
-      >/tmp/cluster.sh
+       user="ec2-user"
+       while read p; do
+       if [ "$p" == $jenkinsid" ]; then
+       echo "Jenkins id found"
+       elif [ "$p" == "$okd" ]; then
+       echo "okd found"
+       else
+       Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
+       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/cluster.sh
+       break 
+       fi
+       done < name.txt
+       >/tmp/cluster.sh
       '''
 }
     
