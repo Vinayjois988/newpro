@@ -115,7 +115,7 @@ def cluster(){
 }
 def get_cluster(){
  sh '''
-      set +x
+      set -x
       jenkinsid="i-05513a9dde52fac1b"
       okd="i-0905226405c3a9ee0"
    sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
@@ -134,12 +134,13 @@ def get_cluster(){
        echo 'src/redis-cli -c -h "`hostname -i`" -a Af1AMNF5Tl1 cluster nodes' >> /tmp/cluster.sh
        
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
+       
        sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/cluster.sh
        break
        fi
        done < name.txt
        >/tmp/cluster.sh
-       set -x
+       set +x
  '''
 }
     
