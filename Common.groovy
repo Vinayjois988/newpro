@@ -26,7 +26,7 @@ def create_name (def vmname){
        sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
        vmname="redis"
        i=1
-       jenkinsid="i-05513a9dde52fac1b"
+       jenkinsid="i-0a30cc8e6622f9ef3"
        while read p ; do
         if [ "$i" -gt "3" ]; then
                 if [ "$p" == "$jenkinsid" ]; then
@@ -52,7 +52,7 @@ def create_name (def vmname){
  def ssh (){
   sh '''
        sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
-       jenkinsid="i-05513a9dde52fac1b"
+       jenkinsid="i-0a30cc8e6622f9ef3"
        user="ec2-user"
        while read p ; do
        if [ "$p" == "$jenkinsid" ]; then
