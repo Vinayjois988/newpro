@@ -115,6 +115,7 @@ def cluster(){
 }
 def get_cluster(){
  sh '''
+      set +x
       jenkinsid="i-05513a9dde52fac1b"
       okd="i-0905226405c3a9ee0"
    sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
@@ -138,6 +139,7 @@ def get_cluster(){
        fi
        done < name.txt
        >/tmp/cluster.sh
+       set -x
  '''
 }
     
