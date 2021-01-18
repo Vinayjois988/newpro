@@ -27,11 +27,14 @@ def create_name (def vmname){
        vmname="redis"
        i=1
        jenkinsid="i-05513a9dde52fac1b"
+       okd="i-0905226405c3a9ee0"
        while read p ; do
         if [ "$i" -gt "3" ]; then
                 if [ "$p" == "$jenkinsid" ]; then
                 echo "jenkins id found"
-                else 
+                elsif [ "$p" =="$okd" ]; then
+                echo "okd found"
+                else
                 sudo aws ec2 create-tags --resources "$p" --tags Key=Name,Value="$vmname".s.vm"$i"
                 i=$((i+1))
                 fi
@@ -53,12 +56,14 @@ def create_name (def vmname){
   sh '''
        sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
        jenkinsid="i-05513a9dde52fac1b"
+       okd="i-0905226405c3a9ee0"
        user="ec2-user"
        while read p ; do
        if [ "$p" == "$jenkinsid" ]; then
        echo "jenkins id found"
-       
-       
+       elif [ "$p" == "$okd" ]; then
+       echo "okd found"
+     
        else
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
        #sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 
