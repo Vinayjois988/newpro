@@ -25,15 +25,15 @@ node {
   stage ('Echo my mobile number'){
     common.mobile(vmname)
   }
-  //stage ('Creating VMs for redis'){
-   //common.vm_creation(imageid,vmcount,vmtype,keyname,securitygroupid,subnetid) 
-  //}
-  //stage ('adding name for created vms'){
-    //common.create_name(vmname)
-  //}
-  //stage (' Waiting till all vms come'){
-    //sh """ sleep 60 """
-  //}
+  stage ('Creating VMs for redis'){
+   common.vm_creation(imageid,vmcount,vmtype,keyname,securitygroupid,subnetid) 
+  }
+  stage ('adding name for created vms'){
+    common.create_name(vmname)
+  }
+  stage (' Waiting till all vms come'){
+    sh """ sleep 60 """
+  }
   stage ( ' Call ssh '){
     common.ssh()
   }
