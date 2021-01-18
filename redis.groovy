@@ -26,7 +26,7 @@ node {
   stage ('Echo my mobile number'){
     common.mobile(vmname)
   }
- /* stage ('Creating VMs for redis'){
+  stage ('Creating VMs for redis'){
    common.vm_creation(imageid,vmcount,vmtype,keyname,securitygroupid,subnetid) 
  }
   stage ('adding name for created vms'){
