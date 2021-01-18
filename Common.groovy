@@ -71,12 +71,25 @@ def create_name (def vmname){
    }
  def cluster()
  sh '''
-      sudo aws ec2 describe-instances --output json | grep Ip | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
-      Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
+      sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
+      echo "sudo su
+           cd /home/ec2-user/redis-6.0.9
+           " >> /tmp/cluster.sh
+      printf "src/redis-cli --cluster create --cluster-replicas 1 " >> /tmp/cluster.sh
       while read p; do
-       if [ "$p" ==
-       
+
+      Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
+      printf " $Ip:6379" >> /tmp/cluster.sh
+      done < name.txt
+      echo " -a Atos@123" >> /tmp/cluster.sh
       
-      
-      
+      sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
+      while read p; do
+      Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
+      sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/cluster.sh
+      break 
+      done < name.txt
+      '''
+}
+    
 return this 
