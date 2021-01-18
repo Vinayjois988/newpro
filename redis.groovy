@@ -14,6 +14,7 @@ node {
   def subnetid="subnet-0bab0452812a186de"
   def rootdir="/var/lib/jenkins"
   def instanceid
+  def ip
   
   stage ('Loading common Files'){
     checkout scm
