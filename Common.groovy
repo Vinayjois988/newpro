@@ -113,7 +113,7 @@ def cluster(){
        >/tmp/cluster.sh
       '''
 }
-def get_cluster(def jenkinsid, def okd, def user){
+def get_cluster(def jenkinsid, def okd, def p){
  sh " set +x "
  sh """
    echo ${jenkinsid}
