@@ -15,6 +15,8 @@ node {
   def rootdir="/var/lib/jenkins"
   def instanceid
   def ip
+  def jenkinsid="i-05513a9dde52fac1b"
+  def okd="i-0535ccefeed795041"
   
   stage ('Loading common Files'){
     checkout scm
@@ -42,7 +44,7 @@ node {
    //   common.cluster()
   //}
   stage ('getig info of cluster'){
-    common.get_cluster()
+    common.get_cluster(jenkinsid,okd)
   }
 }
   
