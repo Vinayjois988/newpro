@@ -162,9 +162,7 @@ def Elinstall(){
        echo "okd found"
        else
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
-       sudo scp -o 'StrictHostKeyChecking no' -i "/tmp/Jenkins.pem" /tmp/tempel.sh "$user"@$Ip:/tmp
-       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/tempel.sh
-     
+            
               
        fi
       '''
