@@ -122,7 +122,7 @@ def get_cluster(def jenkinsid, def okd, def user){
      sh '''
      sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
      '''
-     sh '''  
+     sh """  
        while read p; do
        if [ "$p" == "${jenkinsid}" ]; then
        echo "Jenkins id found"
@@ -143,7 +143,7 @@ def get_cluster(def jenkinsid, def okd, def user){
        break
        fi
        done < name.txt
-       '''
+       """
       sh " >/tmp/cluster.sh "
        sh "set -x "
 }
