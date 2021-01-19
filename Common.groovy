@@ -122,8 +122,8 @@ def get_cluster(def jenkinsid, def okd, def user){
      sh '''
      sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
      '''
-     sh """  
-       while read p; do
+     
+   sh "  while read p; do
        if [ "$p" == "${jenkinsid}" ]; then
        echo "Jenkins id found"
        elif [ "$p" == "${okd}" ]; then
@@ -142,8 +142,8 @@ def get_cluster(def jenkinsid, def okd, def user){
        sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/cluster.sh
        break
        fi
-       done < name.txt
-       """
+       done < name.txt "
+       
       sh " >/tmp/cluster.sh "
        sh "set -x "
 }
