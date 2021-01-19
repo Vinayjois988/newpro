@@ -115,6 +115,7 @@ def cluster(){
 }
 def get_cluster(def jenkinsid, def okd, def user){
  sh " set +x "
+ sh "${jenkinsid}"
       
      sh '''
      sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
