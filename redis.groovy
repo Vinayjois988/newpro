@@ -17,6 +17,7 @@ node {
   def ip
   def jenkinsid="i-05513a9dde52fac1b"
   def okd="i-0535ccefeed795041"
+  def user="ec2-user"
   
   stage ('Loading common Files'){
     checkout scm
@@ -44,7 +45,7 @@ node {
    //   common.cluster()
   //}
   stage ('getig info of cluster'){
-    common.get_cluster(jenkinsid,okd)
+    common.get_cluster(jenkinsid,okd,user)
   }
 }
   
