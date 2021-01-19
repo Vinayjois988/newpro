@@ -150,8 +150,11 @@ def Elinstall(){
       jenkinsid="i-05513a9dde52fac1b"
       okd="i-0905226405c3a9ee0"
       sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
-      sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
        user="ec2-user"
+       
+       echo "sudo su
+           cd /home/ec2-user/
+           " >> /tmp/tempel.sh
        while read p; do
        if [ "$p" == "$jenkinsid" ]; then
        echo "Jenkins id found"
@@ -159,11 +162,10 @@ def Elinstall(){
        echo "okd found"
        else
        Ip=$(sudo aws ec2 describe-instances --instance-ids="$p"  --query 'Reservations[*].Instances[*].{Instance:PublicIpAddress}')
-       sudo scp -o 'StrictHostKeyChecking no' -i "/tmp/Jenkins.pem" /tmp/remotescript.sh "$user"@$Ip:/tmp
-       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/remotescript.sh
-       echo " sudo su
-              cd /home/ec2-user/el.sh
-              " >> /tmp/remotescript.sh
+       sudo scp -o 'StrictHostKeyChecking no' -i "/tmp/Jenkins.pem" /tmp/tempel.sh "$user"@$Ip:/tmp
+       sudo ssh -o "StrictHostKeyChecking no" -i "/tmp/Jenkins.pem" "$user"@$Ip 'bash -s' < /tmp/tempel.sh
+     
+              
        fi
-       
+      '''
 return this 
