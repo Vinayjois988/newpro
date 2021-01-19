@@ -130,6 +130,9 @@ def get_cluster(def jenkinsid, def okd, def p){
        echo "okd found"
        else
        echo "nothing finr"
+       fi
+       done< name.txt
+       
        """
        
        
