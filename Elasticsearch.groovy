@@ -3,7 +3,7 @@ import groovy.json.JsonOutput
 import groovy.json.JsonBuilder 
 
 node {
-  def vmname="Redis"
+  def vmname="Elasticsearh"
   def vmsize="20"
   def vmtype="t2.medium"
   def ostype="RHEL"
@@ -21,10 +21,22 @@ node {
   checkout scm
     common=load "${rootdir}/newpro/Common.groovy"
   }
-  stage (' Installing Elastic search and Logstash in vm'){
-   common.Elinstall(
-   }
-  stage ('adding Elasticsearch name for created vms'){
+   stage ('adding Elasticsearch name for created vms'){
     common.create_name(vmname)
+   }
+   stage (' ssh to existing vm'){
+   common.ssh()
   }
-  stage
+  stage (' Installing Elasticsearch'){
+    common.Elinstall(instanceid)
+  }
+  stage (' Installing Logstash'){
+    common.loginstall(instanceid)
+  }
+  stage ('metricbeat installating'){
+    common.metbeat()
+  }
+  stage ('Configure Kibana'){
+    common.kibanainstall()
+  }
+}
