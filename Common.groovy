@@ -26,8 +26,8 @@ def create_name (def vmname){
        sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
        vmname="redis"
        i=1
-       jenkinsid="i-05513a9dde52fac1b"
-       okd="i-0905226405c3a9ee0"
+       jenkinsid="i-02f8d269fceb2d1bf"
+       okd="i-05f223c859b90532d"
        while read p ; do
         if [ "$i" -gt "3" ]; then
                 if [ "$p" == "$jenkinsid" ]; then
@@ -55,8 +55,8 @@ def create_name (def vmname){
  def ssh (){
   sh '''
        sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
-       jenkinsid="i-05513a9dde52fac1b"
-       okd="i-0905226405c3a9ee0"
+       jenkinsid="i-02f8d269fceb2d1bf"
+       okd="i-05f223c859b90532d"
        user="ec2-user"
        while read p ; do
        if [ "$p" == "$jenkinsid" ]; then
@@ -76,8 +76,8 @@ def create_name (def vmname){
    }
 def cluster(){
  sh '''
-      jenkinsid="i-05513a9dde52fac1b"
-      okd="i-0905226405c3a9ee0"
+      jenkinsid="i-02f8d269fceb2d1bf"
+      okd="i-05f223c859b90532d"
       sudo aws ec2 describe-instances --output json | grep InstanceId | awk '{print $2}' | tr '"' ' ' | tr ',' ' ' > name.txt
       echo "sudo su
            cd /home/ec2-user/redis-6.0.9
