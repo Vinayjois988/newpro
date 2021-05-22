@@ -49,4 +49,4 @@ node {
     common.get_cluster(jenkinsid,okd,p)
   }
 }
-  
+ return this ;
