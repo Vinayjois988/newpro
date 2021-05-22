@@ -3,20 +3,21 @@ import groovy.json.JsonOutput
 import groovy.json.JsonBuilder 
 
 node {
-  def vmname="Redis"
+  def vmname="Vm1"
   def vmsize="20"
-  def vmtype="t2.medium"
+  def vmtype="t2.micro"
   def ostype="RHEL"
-  def imageid="ami-0a9d27a9f4f5c0efc"
-  def vmcount="6"
+  def imageid="ami-077e31c4939f6a2f3"
+  def vmcount="1"
   def keyname="Jenkins"
-  def securitygroupid="sg-8ed10bec"
-  def subnetid="subnet-dc5068b4"
+  def securitygroupid="sg-0c0ff2aed6b3cac3"
+  def subnetid="sub"
+  net-dc5068b4"
   def rootdir="/var/lib/jenkins"
   def instanceid
   def ip
-  def jenkinsid="i-05513a9dde52fac1b"
-  def okd="i-0535ccefeed795041"
+  def jenkinsid="i-02f8d269fceb2d1bf"
+  def okd="i-05f223c859b90532d"
   def user="ec2-user"
   def p
   
