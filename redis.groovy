@@ -7,17 +7,16 @@ node {
   def vmsize="8"
   def vmtype="t2.micro"
   def ostype="RHEL"
-  def imageid="ami-077e31c4939f6a2f3"
+  def imageid="ami-010aff33ed5991201"
   def vmcount="1"
-  def keyname="Jenkins"
-  def securitygroupid="sg-0c0ff2aed6b3cac3"
-  def subnetid="sub"
-  net-dc5068b4"
+  def keyname="newvm"
+  def securitygroupid="sg-022be2db2733d8c9d"
+  def subnetid="subnet-06856d6d"
   def rootdir="/var/lib/jenkins"
   def instanceid
   def ip
-  def jenkinsid="i-02f8d269fceb2d1bf"
-  def okd="i-05f223c859b90532d"
+  //def jenkinsid="i-03db02cf586d93cd6"
+  //def okd=""
   def user="ec2-user"
   def p
   
