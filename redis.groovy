@@ -4,7 +4,7 @@ import groovy.json.JsonBuilder
 
 node {
   def vmname="Vm1"
-  def vmsize="20"
+  def vmsize="8"
   def vmtype="t2.micro"
   def ostype="RHEL"
   def imageid="ami-077e31c4939f6a2f3"
@@ -28,9 +28,9 @@ node {
   stage ('echoing all varribles'){
     sh """echo hi """
   }
-  stage ('Echo my mobile number'){
-    common.mobile(vmname)
-  }
+  #stage ('Echo my mobile number'){
+   # common.mobile(vmname)
+  #}
   stage ('Creating VMs for redis'){
    common.vm_creation(imageid,vmcount,vmtype,keyname,securitygroupid,subnetid) 
   }
@@ -40,14 +40,14 @@ node {
   stage (' Waiting till all vms come'){
     sh """ sleep 60 """
   }
-  stage ( ' Call ssh '){
-    common.ssh()
-  }
-    stage ('Redis Cluster'){
-      common.cluster()
-  }
-  stage ('getig info of cluster'){
-    common.get_cluster(jenkinsid,okd,p)
-  }
+  #stage ( ' Call ssh '){
+    #common.ssh()
+  #}
+    #stage ('Redis Cluster'){
+      #common.cluster()
+  #}
+  #stage ('getig info of cluster'){
+    #common.get_cluster(jenkinsid,okd,p)
+  #}
 }
  return this ;
