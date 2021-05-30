@@ -9,12 +9,12 @@ import java.io.Reader;
 import java.util.HashMap;
 
 
-def mobile (def vmname){
- sh """
- 	echo "9972"
-  echo "${vmname}"
-    """
-}
+//def mobile (def vmname){
+ //sh """
+ 	//echo "9972"
+  //echo "${vmname}"
+    //"""
+//}
 
 def vm_creation (def imageid,def vmcount,def vmtype,def keyname,def securitygroupid,def subnetid){
  sh """
@@ -113,7 +113,7 @@ def cluster(){
        >/tmp/cluster.sh
       '''
 }
-def get_cluster(def jenkinsid, def okd, def p){
+/*def get_cluster(def jenkinsid, def okd, def p){
  sh " set +x "
  sh """
    echo ${jenkinsid}
@@ -152,5 +152,5 @@ def get_cluster(def jenkinsid, def okd, def p){
       sh " >/tmp/cluster.sh "
        sh "set -x "
 }
-    
+  */  
 return this 
